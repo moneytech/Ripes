@@ -157,7 +157,13 @@ private:
 
     std::map<unsigned, CacheLine> m_cacheLines;
 
-    void updateCacheLineLRU(CacheLine& line, unsigned lruIdx);
+    void updateCacheLineReplFields(CacheLine& line, unsigned wayIdx);
+    /**
+     * @brief revertCacheLineReplFields
+     * Called whenever undoing a transaction to the cache. Reverts a cacheline's replacement fields according to the
+     * configured replacement policy.
+     */
+    void revertCacheLineReplFields(CacheLine& line, unsigned wayIdx);
 
     struct CacheHitTrace {
         int hits = 0;
